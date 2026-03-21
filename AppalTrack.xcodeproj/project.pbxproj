@@ -6,14 +6,66 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		72BBF0EF2F6F432D0052E2A9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72BBF0EE2F6F432D0052E2A9 /* WidgetKit.framework */; };
+		72BBF0F12F6F432D0052E2A9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72BBF0F02F6F432D0052E2A9 /* SwiftUI.framework */; };
+		72BBF0FE2F6F432F0052E2A9 /* AppalTrackerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 72BBF0EC2F6F432D0052E2A9 /* AppalTrackerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		72BBF0FC2F6F432F0052E2A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72BBF0D22F6F42C10052E2A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72BBF0EB2F6F432D0052E2A9;
+			remoteInfo = AppalTrackerWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		72BBF1032F6F432F0052E2A9 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				72BBF0FE2F6F432F0052E2A9 /* AppalTrackerWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		72BBF0DA2F6F42C10052E2A9 /* AppalTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppalTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72BBF0EC2F6F432D0052E2A9 /* AppalTrackerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AppalTrackerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		72BBF0EE2F6F432D0052E2A9 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		72BBF0F02F6F432D0052E2A9 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		72BBF1042F6F44630052E2A9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		72BBF0FF2F6F432F0052E2A9 /* Exceptions for "AppalTrackerWidget" folder in "AppalTrackerWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 72BBF0EB2F6F432D0052E2A9 /* AppalTrackerWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		72BBF0DC2F6F42C10052E2A9 /* AppalTrack */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AppalTrack;
+			sourceTree = "<group>";
+		};
+		72BBF0F22F6F432D0052E2A9 /* AppalTrackerWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				72BBF0FF2F6F432F0052E2A9 /* Exceptions for "AppalTrackerWidget" folder in "AppalTrackerWidgetExtension" target */,
+			);
+			path = AppalTrackerWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +78,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		72BBF0E92F6F432D0052E2A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72BBF0F12F6F432D0052E2A9 /* SwiftUI.framework in Frameworks */,
+				72BBF0EF2F6F432D0052E2A9 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,7 +94,10 @@
 			isa = PBXGroup;
 			children = (
 				72BBF0DC2F6F42C10052E2A9 /* AppalTrack */,
+				72BBF0F22F6F432D0052E2A9 /* AppalTrackerWidget */,
+				72BBF0ED2F6F432D0052E2A9 /* Frameworks */,
 				72BBF0DB2F6F42C10052E2A9 /* Products */,
+				72BBF1042F6F44630052E2A9 /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,8 +105,18 @@
 			isa = PBXGroup;
 			children = (
 				72BBF0DA2F6F42C10052E2A9 /* AppalTrack.app */,
+				72BBF0EC2F6F432D0052E2A9 /* AppalTrackerWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		72BBF0ED2F6F432D0052E2A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72BBF0EE2F6F432D0052E2A9 /* WidgetKit.framework */,
+				72BBF0F02F6F432D0052E2A9 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +129,12 @@
 				72BBF0D62F6F42C10052E2A9 /* Sources */,
 				72BBF0D72F6F42C10052E2A9 /* Frameworks */,
 				72BBF0D82F6F42C10052E2A9 /* Resources */,
+				72BBF1032F6F432F0052E2A9 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				72BBF0FD2F6F432F0052E2A9 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				72BBF0DC2F6F42C10052E2A9 /* AppalTrack */,
@@ -69,6 +145,28 @@
 			productName = AppalTrack;
 			productReference = 72BBF0DA2F6F42C10052E2A9 /* AppalTrack.app */;
 			productType = "com.apple.product-type.application";
+		};
+		72BBF0EB2F6F432D0052E2A9 /* AppalTrackerWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72BBF1002F6F432F0052E2A9 /* Build configuration list for PBXNativeTarget "AppalTrackerWidgetExtension" */;
+			buildPhases = (
+				72BBF0E82F6F432D0052E2A9 /* Sources */,
+				72BBF0E92F6F432D0052E2A9 /* Frameworks */,
+				72BBF0EA2F6F432D0052E2A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				72BBF0F22F6F432D0052E2A9 /* AppalTrackerWidget */,
+			);
+			name = AppalTrackerWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = AppalTrackerWidgetExtension;
+			productReference = 72BBF0EC2F6F432D0052E2A9 /* AppalTrackerWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +179,9 @@
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					72BBF0D92F6F42C10052E2A9 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					72BBF0EB2F6F432D0052E2A9 = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
@@ -100,12 +201,20 @@
 			projectRoot = "";
 			targets = (
 				72BBF0D92F6F42C10052E2A9 /* AppalTrack */,
+				72BBF0EB2F6F432D0052E2A9 /* AppalTrackerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		72BBF0D82F6F42C10052E2A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72BBF0EA2F6F432D0052E2A9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +231,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		72BBF0E82F6F432D0052E2A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		72BBF0FD2F6F432F0052E2A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 72BBF0EB2F6F432D0052E2A9 /* AppalTrackerWidgetExtension */;
+			targetProxy = 72BBF0FC2F6F432F0052E2A9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		72BBF0E32F6F42C50052E2A9 /* Debug */ = {
@@ -266,7 +390,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hendershot.AppalTrack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hendershot.AppalTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -298,11 +422,71 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hendershot.AppalTrack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hendershot.AppalTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		72BBF1012F6F432F0052E2A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q8RLJL5V45;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppalTrackerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AppalTrackerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hendershot.AppalTracker.AppalTrackerWidgett;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		72BBF1022F6F432F0052E2A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q8RLJL5V45;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppalTrackerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AppalTrackerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hendershot.AppalTracker.AppalTrackerWidgett;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -327,6 +511,15 @@
 			buildConfigurations = (
 				72BBF0E62F6F42C50052E2A9 /* Debug */,
 				72BBF0E72F6F42C50052E2A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72BBF1002F6F432F0052E2A9 /* Build configuration list for PBXNativeTarget "AppalTrackerWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72BBF1012F6F432F0052E2A9 /* Debug */,
+				72BBF1022F6F432F0052E2A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
