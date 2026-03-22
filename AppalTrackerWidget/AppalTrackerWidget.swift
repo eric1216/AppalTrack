@@ -7,50 +7,74 @@
 
 import WidgetKit
 import SwiftUI
+let test = routeData()
 
 struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent(), timeTable: [:])
     }
 
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+        SimpleEntry(date: Date(), configuration: configuration, timeTable: [:])
     }
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+        let bus = configuration.selectedBus?.name
+        let stops = configuration.selectedStops ?? []
+        var times: [nextStopInfo] = []
+        var timeTable: [String: String] = [:]
+        
+        for stop in stops {
+            do {
+                times = try await test.getFilteredDataByName(nameValue: stop.name)
+                for i in times {
+                    if i.routeID == bus {
+                        timeTable[stop.name] = i.time
+                    }
+                }
+            } catch {
+                print("error fetching")
+            }
         }
-
-        return Timeline(entries: entries, policy: .atEnd)
+        
+        
+        let entry = SimpleEntry(date: Date(), configuration: configuration, timeTable: timeTable)
+        return Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(60)))
     }
-
-//    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationAppIntent
+    let timeTable: [String: String]
 }
 
 struct AppalTrackerWidgetEntryView : View {
     var entry: Provider.Entry
-
+    @Environment(\.widgetFamily) var widgetFamily
+    
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+        if widgetFamily == .accessoryInline {
+            Text("\(entry.configuration.selectedBus?.name ?? "N/A") \(entry.configuration.selectedStops?.first?.name ?? "N/A") · ")
+        }
+        else {
+            HStack(spacing: 30) {
+                VStack(alignment: .leading) {
+                    Text("Bus:")
+                        .font(.footnote)
+                    Text(entry.configuration.selectedBus?.name ?? "N/A")
+                        .font(.headline)
+                }
+                VStack(alignment: .trailing, spacing: 4) {
+                    if (entry.configuration.selectedStops ?? []).isEmpty {
+                        Text("N/A").font(.subheadline)
+                    } else {
+                        ForEach(entry.configuration.selectedStops ?? [], id: \.id ) {
+                            stop in Text("\(stop.name) · \(entry.timeTable[stop.name] ?? "N/A")").font(.footnote)
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -59,30 +83,17 @@ struct AppalTrackerWidget: Widget {
     let kind: String = "AppalTrackerWidget"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
+        AppIntentConfiguration(
+            kind: kind,
+            intent: ConfigurationAppIntent.self,
+            provider: Provider()
+        ) { entry in
             AppalTrackerWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
+        .configurationDisplayName("AppalTrack")
+        .description("Track a bus and your favorite stops!.")
+        .supportedFamilies([.systemMedium, .accessoryInline])
     }
 }
 
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
-    }
-}
-
-#Preview(as: .systemSmall) {
-    AppalTrackerWidget()
-} timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
-}
