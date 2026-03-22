@@ -38,7 +38,7 @@ struct Provider: AppIntentTimelineProvider {
         }
         
         
-        let entry = SimpleEntry(date: Date(), configuration: configuration, timeTable: [:])
+        let entry = SimpleEntry(date: Date(), configuration: configuration, timeTable: timeTable)
         return Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(60)))
     }
 }
