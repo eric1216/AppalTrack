@@ -54,17 +54,26 @@ struct StopEntity: AppEntity {
         DisplayRepresentation(title: "\(name)")
     }
     
-    static let specificStops: [StopEntity]() = [
-        "gold": [
-                StopEntity(id: "", name: ""),
-                StopEntity(id: "", name: ""),
-                StopEntity(id: "", name: ""),
-                ],
-        "red": [
-                StopEntity(id: "", name: ""),
-                StopEntity(id: "", name: ""),
-                StopEntity(id: "", name: ""),
-        ]
+    static let specificStops: [StopEntity] = [
+        StopEntity(id: "asuPeacockTrafficCircle", name: "ASU Peacock Traffic Circle"),
+        StopEntity(id: "asuSrc", name: "ASU SRC"),
+        StopEntity(id: "asuLivingLearningCenterUp", name: "ASU Living Learning Center (Up)"),
+        StopEntity(id: "asuMountaineerHall", name: "ASU Mountaineer Hall"),
+        StopEntity(id: "asuAppalachianHeights", name: "ASU Appalachian Heights"),
+        StopEntity(id: "topOfBodenheimerUp", name: "Top of Bodenheimer (up)"),
+        StopEntity(id: "southLotBaseballStadium", name: "South Lot / Baseball Stadium"),
+        StopEntity(id: "topOfBodenheimerDown", name: "Top of Bodenheimer (down)"),
+        StopEntity(id: "greenwoodLot", name: "Greenwood Lot"),
+        StopEntity(id: "asuLivingLearningCenterDown", name: "ASU Living Learning Center (down)"),
+        StopEntity(id: "asuWalkerHallBodenheimerDrive", name: "ASU Walker Hall / Bodenheimer Drive"),
+        StopEntity(id: "asuCollegeStStation", name: "ASU College St Station"),
+        StopEntity(id: "howardStHardinSt", name: "Howard St / Hardin St"),
+        StopEntity(id: "asuDogwoodHall", name: "ASU Dogwood Hall"),
+        StopEntity(id: "asuSkywalk", name: "ASU Skywalk"),
+        StopEntity(id: "asuTrivetteHall", name: "ASU Trivette Hall"),
+        StopEntity(id: "asuPeacockTrafficLight", name: "ASU Peacock Traffic Light"),
+        StopEntity(id: "waterStKingSt", name: "Water St / King St"),
+        StopEntity(id: "kingStDepotSt", name: "King St / Depot St")
     ]
 }
 
@@ -74,7 +83,7 @@ struct BusQuery: EntityQuery {
     }
     
     func suggestedEntities() async throws -> [BusEntity] {
-        BusEntity.allBusses[getSelectedBus()]
+        BusEntity.allBusses
     }
     
     func defaultResult() async -> BusEntity? {
@@ -103,6 +112,7 @@ struct ConfigurationAppIntent: WidgetConfigurationIntent {
     @Parameter(title: "Bus")
     var selectedBus: BusEntity?
 
-    @Parameter(title: "Stop (max. 3)", size: .init(min: 0, max: 3))
+    @Parameter(title: "Stops (max. 3)", size: .init(min: 0, max: 3))
     var selectedStops: [StopEntity]?
 }
+

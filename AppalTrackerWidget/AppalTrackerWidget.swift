@@ -19,17 +19,8 @@ struct Provider: AppIntentTimelineProvider {
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
         var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
         
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
-        }
-
-        return Timeline(entries: entries, policy: .atEnd)
+        
     }
 
 //    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
@@ -46,14 +37,22 @@ struct AppalTrackerWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        HStack (spacing: 35) {
+        HStack (spacing: 30) {
             VStack {
                 Text("Bus:")
-                    .font(.caption)
+                    .font(.footnote)
                 Text(entry.configuration.selectedBus?.name ?? "N/A")
                     .font(.headline)
             }
-            Text("Hello")
+            VStack(alignment: .trailing, spacing: 4) {
+                if (entry.configuration.selectedStops ?? []).isEmpty {
+                    Text("N/A").font(.subheadline)
+                } else {
+                    ForEach(entry.configuration.selectedStops ?? [], id: \.id ) {
+                        stop in Text("\(stop.name) · ").font(.footnote)
+                    }
+                }
+            }
         }
     }
 }
@@ -76,7 +75,3 @@ struct AppalTrackerWidget: Widget {
     }
 }
 
-func getSelectedBus() -> StopEntity {
-    var entry: Provider.Entry
-    return StopEntity(id: "se", name: entry.configuration.selectedBus?.name ?? "N/A")
-}
