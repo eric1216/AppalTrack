@@ -22,6 +22,7 @@ struct Provider: AppIntentTimelineProvider {
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
+        
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = SimpleEntry(date: entryDate, configuration: configuration)
@@ -45,8 +46,14 @@ struct AppalTrackerWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        VStack{
-            Text(entry.configuration.selectedBus.name)
+        HStack (spacing: 35) {
+            VStack {
+                Text("Bus:")
+                    .font(.caption)
+                Text(entry.configuration.selectedBus?.name ?? "N/A")
+                    .font(.headline)
+            }
+            Text("Hello")
         }
     }
 }
@@ -69,3 +76,7 @@ struct AppalTrackerWidget: Widget {
     }
 }
 
+func getSelectedBus() -> StopEntity {
+    var entry: Provider.Entry
+    return StopEntity(id: "se", name: entry.configuration.selectedBus?.name ?? "N/A")
+}
