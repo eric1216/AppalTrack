@@ -1,0 +1,11 @@
+{
+  "colors": {
+    "routeID: 1": "blue",
+    "routeID: 2": "green",
+    "routeID: 3": "red",
+    "routeID: 4": "gold",
+    "routeID: 5": "gray",
+    "routeID: 6": "teal",
+    "routeID: 9": "purple"
+  }
+}
