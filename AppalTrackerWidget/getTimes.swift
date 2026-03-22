@@ -64,9 +64,12 @@ class routeData {
     // }
 
     func getFilteredDataByName(nameValue: String) async throws -> [nextStopInfo]{
-        let currentDirectoryURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-        let fileURL = currentDirectoryURL.appendingPathComponent("flipped_bus_stops.json")
-        let colorFileURL = currentDirectoryURL.appendingPathComponent("color_ids.json")
+        var nextStopInfoArray: [nextStopInfo] = []
+        
+        guard let fileURL = Bundle.main.url(forResource: "flipped_bus_stops", withExtension: "json"),
+              let colorFileURL = Bundle.main.url(forResource: "color_ids", withExtension: "json") else {
+            return nextStopInfoArray
+        }
 
         let jsonData = try Data(contentsOf: fileURL)
         let decodedBusStops = try JSONDecoder().decode(jsonCall.self, from: jsonData)
@@ -75,8 +78,6 @@ class routeData {
         let decodedColorData = try JSONDecoder().decode(colorInfo.self, from: colorJsonData)
 
         let busData = try await fetchStopData()
-
-        var nextStopInfoArray: [nextStopInfo] = []
 
         guard let stopIDString = decodedBusStops.flipped_bus_stops[nameValue],
               let stopIDFromJson = Int(stopIDString) else {
