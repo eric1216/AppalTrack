@@ -73,7 +73,8 @@ struct StopEntity: AppEntity {
         StopEntity(id: "asuTrivetteHall", name: "ASU Trivette Hall"),
         StopEntity(id: "asuPeacockTrafficLight", name: "ASU Peacock Traffic Light"),
         StopEntity(id: "waterStKingSt", name: "Water St / King St"),
-        StopEntity(id: "kingStDepotSt", name: "King St / Depot St")
+        StopEntity(id: "kingStDepotSt", name: "King St / Depot St"),
+        StopEntity(id: "asuCollegeOfHealthSciences", name: "ASU College of Health Sciences")
     ]
 }
 

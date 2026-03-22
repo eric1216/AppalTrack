@@ -70,7 +70,7 @@ struct AppalTrackerWidgetEntryView : View {
                         Text("N/A").font(.subheadline)
                     } else {
                         ForEach(entry.configuration.selectedStops ?? [], id: \.id ) {
-                            stop in Text("\(stop.name) · \(entry.timeTable[stop.name] ?? "NA")").font(.footnote)
+                            stop in Text("\(stop.name) · \(entry.timeTable[stop.name] ?? "N/A")").font(.footnote)
                         }
                     }
                 }
